@@ -1,4 +1,5 @@
 ```python
+
 # what user sees
 class Tree(object):
 	# constructor
