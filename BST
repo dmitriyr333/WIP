@@ -1,0 +1,82 @@
+```python
+# what user sees
+class Tree(object):
+	# constructor
+	def __init__ (self):
+		self.root = None
+	
+	# insert value
+	def insert( self, data):
+		if self.root:
+			return self.root.insertNode(data)
+		else:
+			self.root = Node(data)
+			return True
+			
+	# find value
+	def find( self, data ):
+		#print "root is %s, data is %s" %(self.root, data)
+		if self.root:
+			return self.root.findNode( data )
+		else:
+			return False
+		
+'''
+internal workings
+'''
+class Node(object):
+	# constructor
+	def __init__(self, cargo=None):
+		self.value = cargo
+		self.leftChild = None
+		self.rightChild = None
+		
+	# inserting data into Node
+	def insertNode( self, cargo):
+		# found dups --> not allowed
+		if self.value == cargo:
+			return False 
+		elif self.leftChild > cargo: # go leftChild
+			# if left node exist
+			if self.leftChild: 
+				return self.leftChild.insertNode( cargo )
+			# else initialize new leftChild
+			else:
+				self.leftChild = Node( cargo ) 
+				return True
+		else:
+			if self.rightChild:
+				return self.rightChild.insertNode( cargo )
+			else:
+				self.rightChild = Node( cargo )
+				return True
+	
+	# find our precious Node
+	def findNode( self, cargo ):
+		if cargo == self.value:
+			#print "value is %s, cargo is %s" %(self.value, cargo)
+			return True
+		elif cargo > self.value:
+			if self.rightChild:
+				return self.rightChild.findNode( cargo )
+			else:
+				return False
+		elif cargo < self.value:
+			if self.leftChild:
+				return self.leftChild.findNode( cargo )
+			else:
+				return False
+		else:
+			return False
+		
+'''
+starting our test
+'''
+
+t = Tree()
+t.insert(4)
+t.insert(5)
+#print t.find(4)
+print t.find(6)
+
+```
