@@ -1,0 +1,13 @@
+```python
+
+'''
+  read intpu from stdin until there are no more
+'''
+
+import sys
+
+for line in sys.stdin():
+  # do something
+
+
+```
