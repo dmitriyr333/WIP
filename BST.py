@@ -1,83 +1,202 @@
-```python
+# Binary Search Tree in Python
 
-# what user sees
-class Tree(object):
-	# constructor
-	def __init__ (self):
-		self.root = None
-	
-	# insert value
-	def insert( self, data):
-		if self.root:
-			return self.root.insertNode(data)
-		else:
-			self.root = Node(data)
-			return True
-			
-	# find value
-	def find( self, data ):
-		#print "root is %s, data is %s" %(self.root, data)
-		if self.root:
-			return self.root.findNode( data )
-		else:
-			return False
-		
-'''
-internal workings
-'''
-class Node(object):
-	# constructor
-	def __init__(self, cargo=None):
-		self.value = cargo
+class Node:
+	def __init__(self, val):
+		self.value = val
 		self.leftChild = None
 		self.rightChild = None
 		
-	# inserting data into Node
-	def insertNode( self, cargo):
-		# found dups --> not allowed
-		if self.value == cargo:
-			return False 
-		elif self.leftChild > cargo: # go leftChild
-			# if left node exist
-			if self.leftChild: 
-				return self.leftChild.insertNode( cargo )
-			# else initialize new leftChild
+	def insert(self, data):
+		if self.value == data:
+			return False
+			
+		elif self.value > data:
+			if self.leftChild:
+				return self.leftChild.insert(data)
 			else:
-				self.leftChild = Node( cargo ) 
+				self.leftChild = Node(data)
 				return True
+
 		else:
 			if self.rightChild:
-				return self.rightChild.insertNode( cargo )
+				return self.rightChild.insert(data)
 			else:
-				self.rightChild = Node( cargo )
+				self.rightChild = Node(data)
 				return True
-	
-	# find our precious Node
-	def findNode( self, cargo ):
-		if cargo == self.value:
-			#print "value is %s, cargo is %s" %(self.value, cargo)
+				
+	def find(self, data):
+		if(self.value == data):
 			return True
-		elif cargo > self.value:
-			if self.rightChild:
-				return self.rightChild.findNode( cargo )
-			else:
-				return False
-		elif cargo < self.value:
+		elif self.value > data:
 			if self.leftChild:
-				return self.leftChild.findNode( cargo )
+				return self.leftChild.find(data)
 			else:
 				return False
+		else:
+			if self.rightChild:
+				return self.rightChild.find(data)
+			else:
+				return False
+
+	def preorder(self):
+		if self:
+			print (str(self.value))
+			if self.leftChild:
+				self.leftChild.preorder()
+			if self.rightChild:
+				self.rightChild.preorder()
+
+	def postorder(self):
+		if self:
+			if self.leftChild:
+				self.leftChild.postorder()
+			if self.rightChild:
+				self.rightChild.postorder()
+			print (str(self.value))
+
+	def inorder(self):
+		if self:
+			if self.leftChild:
+				self.leftChild.inorder()
+			print (str(self.value))
+			if self.rightChild:
+				self.rightChild.inorder()
+
+class Tree:
+	def __init__(self):
+		self.root = None
+
+	def insert(self, data):
+		if self.root:
+			return self.root.insert(data)
+		else:
+			self.root = Node(data)
+			return True
+
+	def find(self, data):
+		if self.root:
+			return self.root.find(data)
 		else:
 			return False
+	
+	def remove(self, data):
+		# empty tree
+		if self.root is None:
+			return False
+			
+		# data is in root node	
+		elif self.root.value == data:
+			if self.root.leftChild is None and self.root.rightChild is None:
+				self.root = None
+			elif self.root.leftChild and self.root.rightChild is None:
+				self.root = self.root.leftChild
+			elif self.root.leftChild is None and self.root.rightChild:
+				self.root = self.root.rightChild
+			elif self.root.leftChild and self.root.rightChild:
+				delNodeParent = self.root
+				delNode = self.root.rightChild
+				while delNode.leftChild:
+					delNodeParent = delNode
+					delNode = delNode.leftChild
+					
+				self.root.value = delNode.value
+				if delNode.rightChild:
+					if delNodeParent.value > delNode.value:
+						delNodeParent.leftChild = delNode.rightChild
+					elif delNodeParent.value < delNode.value:
+						delNodeParent.rightChild = delNode.rightChild
+				else:
+					if delNode.value < delNodeParent.value:
+						delNodeParent.leftChild = None
+					else:
+						delNodeParent.rightChild = None
+						
+			return True
 		
-'''
-starting our test
-'''
+		parent = None
+		node = self.root
+		
+		# find node to remove
+		while node and node.value != data:
+			parent = node
+			if data < node.value:
+				node = node.leftChild
+			elif data > node.value:
+				node = node.rightChild
+		
+		# case 1: data not found
+		if node is None or node.value != data:
+			return False
+			
+		# case 2: remove-node has no children
+		elif node.leftChild is None and node.rightChild is None:
+			if data < parent.value:
+				parent.leftChild = None
+			else:
+				parent.rightChild = None
+			return True
+			
+		# case 3: remove-node has left child only
+		elif node.leftChild and node.rightChild is None:
+			if data < parent.value:
+				parent.leftChild = node.leftChild
+			else:
+				parent.rightChild = node.leftChild
+			return True
+			
+		# case 4: remove-node has right child only
+		elif node.leftChild is None and node.rightChild:
+			if data < parent.value:
+				parent.leftChild = node.rightChild
+			else:
+				parent.rightChild = node.rightChild
+			return True
+			
+		# case 5: remove-node has left and right children
+		else:
+			delNodeParent = node
+			delNode = node.rightChild
+			while delNode.leftChild:
+				delNodeParent = delNode
+				delNode = delNode.leftChild
+				
+			node.value = delNode.value
+			if delNode.rightChild:
+				if delNodeParent.value > delNode.value:
+					delNodeParent.leftChild = delNode.rightChild
+				elif delNodeParent.value < delNode.value:
+					delNodeParent.rightChild = delNode.rightChild
+			else:
+				if delNode.value < delNodeParent.value:
+					delNodeParent.leftChild = None
+				else:
+					delNodeParent.rightChild = None
 
-t = Tree()
-t.insert(4)
-t.insert(5)
-#print t.find(4)
-print t.find(6)
+	def preorder(self):
+		if self.root is not None:
+			print("PreOrder")
+			self.root.preorder()
+        
+	def postorder(self):
+		if self.root is not None:
+			print("PostOrder")
+			self.root.postorder()
+			
+	def inorder(self):
+		if self.root is not None:
+			print("InOrder")
+			self.root.inorder()
 
-```
+bst = Tree()
+print(bst.insert(11))
+bst.insert(5)
+bst.insert(34)
+bst.insert(23)
+bst.insert(1)
+bst.insert(3)
+
+bst.preorder()
+bst.postorder()
+bst.inorder()
+#print(bst.remove(10))
+bst.preorder()
