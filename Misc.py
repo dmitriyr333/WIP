@@ -1,4 +1,3 @@
-```python
 
 '''
   read intpu from stdin until there are no more
@@ -10,4 +9,3 @@ for line in sys.stdin():
   # do something
 
 
-```
