@@ -71,3 +71,19 @@ class MyBook(Book):
 
 new_novel=MyBook('title','author',12)
 new_novel.display()
+
+
+''' 
+Is there any reason for a class declaration to inherit from object?
+
+I just found some code that does this and I can't find a good reason why.
+
+class MyClass(object):
+    # class code follows...
+    
+Yes, this is a 'new style' object. It was a feature introduced in python2.2.
+New style objects have a different object model to classic objects, and some things won't work properly 
+with old style objects, for instance, super(), @property and descriptors. 
+See this article for a good description of what a new style class is:
+	http://docs.python.org/release/2.2.3/whatsnew/sect-rellinks.html
+'''
