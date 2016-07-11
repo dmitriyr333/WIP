@@ -62,6 +62,24 @@ class Node:
 			if self.rightChild:
 				self.rightChild.inorder()
 
+
+	def heightNode( self ):
+		this_level = [self] # list, with 1st elem as root Node
+		number_of_levels = 0
+		
+		while this_level: # is always replaced with next level
+			number_of_levels += 1
+			next_level = [] # list to store next level down (if exist)
+			for n in this_level: # iterate over current level
+				# print n.cargo
+				if n.left:  next_level.append( n.left )
+				if n.right: next_level.append( n.right )
+			# print # print empty line between hights
+			this_level = next_level
+		print number_of_levels-1
+
+
+''' TREE class '''
 class Tree:
 	def __init__(self):
 		self.root = None
@@ -187,16 +205,29 @@ class Tree:
 			print("InOrder")
 			self.root.inorder()
 
+
+	def height( self ):
+		if not self.root:
+			return 0
+		else:
+			return self.root.heightNode()
+
 bst = Tree()
-print(bst.insert(11))
+#print(bst.insert(11))
 bst.insert(5)
 bst.insert(34)
 bst.insert(23)
 bst.insert(1)
 bst.insert(3)
+bst.insert(4)
 
-bst.preorder()
-bst.postorder()
-bst.inorder()
-#print(bst.remove(10))
-bst.preorder()
+bst.height()
+
+#print( bst.find(4) )
+#print( bst.find(1) )
+
+# bst.preorder()
+# bst.postorder()
+#bst.inorder()
+# #print(bst.remove(10))
+# bst.preorder()
