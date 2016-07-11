@@ -7,8 +7,8 @@ class Solution:
             self.stack = []
         # else just initialize passed argument to instance's attribute
         else:
-            self.queue = list( lst )
-            self.stack = list( lst )
+            self.queue = list( lst ) # FIFO
+            self.stack = list( lst ) # LIFO
         
     def pushCharacter( self, elem ):
         return self.stack.append( elem )
@@ -18,13 +18,13 @@ class Solution:
     
     def popCharacter( self ):
         try:
-            return self.stack.pop( 0 ) # pop first element
+            return self.stack.pop() # pop last element
         except IndexError:
             raise IndexError('No more items left in the stack')
             
     def dequeueCharacter( self ):
         try:
-            return self.queue.pop() # pop last element
+            return self.queue.pop( 0 ) # pop first element
         except IndexError:
             raise IndexError("No more items left in the queue")
             
