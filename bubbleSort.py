@@ -5,7 +5,7 @@ class MyClass( object ):
 		else:
 			self.arr = list(arr)
 			
-	def buubleSort( self ):
+	def bubbleSort( self ):
 		
 		length = len(self.arr)
 		sorted_array = False
