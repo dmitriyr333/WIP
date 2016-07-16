@@ -62,3 +62,9 @@ with old style objects, for instance, super(), @property and descriptors.
 See this article for a good description of what a new style class is:
 	http://docs.python.org/release/2.2.3/whatsnew/sect-rellinks.html
 '''
+
+
+''' defaultdict '''
+
+ from collections import defaultdict
+ d = defaultdict(<type>)
