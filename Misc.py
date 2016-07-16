@@ -68,3 +68,28 @@ See this article for a good description of what a new style class is:
 
  from collections import defaultdict
  d = defaultdict(<type>)
+
+
+""" NOTES:
+      - requires Python 2.4 or greater
+      - elements of the lists must be hashable
+      - order of the original lists is not preserved
+"""
+def unique(a):
+    """ return the list with duplicate elements removed """
+    return list(set(a))
+
+def intersect(a, b):
+    """ return the intersection of two lists """
+    return list(set(a) & set(b))
+
+def union(a, b):
+    """ return the union of two lists """
+    return list(set(a) | set(b))
+
+if __name__ == "__main__": 
+    a = [0,1,2,0,1,2,3,4,5,6,7,8,9]
+    b = [5,6,7,8,9,10,11,12,13,14]
+    print unique(a)
+    print intersect(a, b)
+    print union(a, b)
