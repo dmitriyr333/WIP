@@ -82,6 +82,11 @@ def unique(a):
 def intersect(a, b):
     """ return the intersection of two lists """
     return list(set(a) & set(b))
+    
+    """ return intesection of ALL elements in the list """
+    return set.intersection( *full_list )
+    
+    
 
 def union(a, b):
     """ return the union of two lists """
@@ -93,3 +98,4 @@ if __name__ == "__main__":
     print unique(a)
     print intersect(a, b)
     print union(a, b)
+    
