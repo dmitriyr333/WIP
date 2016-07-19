@@ -99,3 +99,8 @@ if __name__ == "__main__":
     print intersect(a, b)
     print union(a, b)
     
+    
+''' List comprehension '''
+ListOfThreeMultiples = [x for x in range(10) if x % 3 == 0] # Multiples of 3 below 10
+ListOfThreeMultiples
+# [0, 3, 6, 9]
