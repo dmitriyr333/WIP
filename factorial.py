@@ -8,14 +8,15 @@ class Memoize:
         if not args in self.memo:
             self.memo[args] = self.f(*args)
         return self.memo[args]
-        
+
 
 def factorial(k):
-    
-    if k < 2: 
+
+    if k < 2:
         return 1
-    
+
     return k * factorial(k - 1)
 
+''' test '''
 f = Memoize(factorial)
 f(5)
