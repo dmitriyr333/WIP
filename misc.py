@@ -8,6 +8,10 @@ import sys
 for line in sys.stdin():
   # do something
 
+# or...
+n, m = map(int,raw_input().split())
+
+
 
 '''
   Enumerate
