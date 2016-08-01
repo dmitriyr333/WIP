@@ -1,33 +1,49 @@
-def dpMakeChange(coinValueList,change,minCoins,coinsUsed):
-   for cents in range(change+1):
-      coinCount = cents
-      newCoin = 1
-      for j in [c for c in coinValueList if c <= cents]:
-            if minCoins[cents-j] + 1 < coinCount:
-               coinCount = minCoins[cents-j]+1
-               newCoin = j
-      minCoins[cents] = coinCount
-      coinsUsed[cents] = newCoin
-   return minCoins[change]
+def rec_coin_dynam(target,coins, known_results = None):
+    '''
+    INPUT: This funciton takes in a target amount and a list of possible coins to use.
+    It also takes a third parameter, known_results, indicating previously calculated results.
+    The known_results parameter shoud be started with [0] * (target+1)
 
-def printCoins(coinsUsed,change):
-   coin = change
-   while coin > 0:
-      thisCoin = coinsUsed[coin]
-      print(thisCoin)
-      coin = coin - thisCoin
+    OUTPUT: Minimum number of coins needed to make the target.
+    '''
+
+    if known_results == None:
+        known_results = [0] * (target+1)
+
+    # Default output to target
+    min_coins = target
+
+    # Base Case
+    if target in coins:
+        known_results[target] = 1
+        return 1
+
+    # Return a known result if it happens to be greater than 1
+    elif known_results[target] > 0:
+        return known_results[target]
+
+    else:
+        # for every coin value that is <= than target
+        for i in [c for c in coins if c <= target]:
+
+            # Recursive call, note how we include the known results!
+            num_coins = 1 + rec_coin_dynam(target-i,coins,known_results)
+
+            # Reset Minimum if we have a new minimum
+            if  min_coins > num_coins:
+                min_coins = num_coins
+
+                # Reset the known result
+                known_results[target] = min_coins
+
+    # print known_results
+    return min_coins
+
 
 def main():
-    amnt = 63
-    clist = [1,5,10,21,25]
-    coinsUsed = [0]*(amnt+1)
-    coinCount = [0]*(amnt+1)
+  target = 7
+  coins = [1,5]
+  # known_results = [0]*(target+1)
 
-    print("Making change for",amnt,"requires")
-    print(dpMakeChange(clist,amnt,coinCount,coinsUsed),"coins")
-    print("They are:")
-    printCoins(coinsUsed,amnt)
-    print("The used list is as follows:")
-    print(coinsUsed)
-
+  print rec_coin_dynam(target,coins)
 main()
