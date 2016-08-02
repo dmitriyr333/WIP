@@ -1,233 +1,131 @@
-# Binary Search Tree in Python
+class BinaryTree( object ):
+    def __init__ (self, data = None, left = None, right = None):
+        self.data = data
+        self.left = left
+        self.right = right
 
-class Node:
-	def __init__(self, val):
-		self.value = val
-		self.leftChild = None
-		self.rightChild = None
-		
-	def insert(self, data):
-		if self.value == data:
-			return False
-			
-		elif self.value > data:
-			if self.leftChild:
-				return self.leftChild.insert(data)
-			else:
-				self.leftChild = Node(data)
-				return True
+    def insert( self, m_data ):
 
-		else:
-			if self.rightChild:
-				return self.rightChild.insert(data)
-			else:
-				self.rightChild = Node(data)
-				return True
-				
-	def find(self, data):
-		if(self.value == data):
-			return True
-		elif self.value > data:
-			if self.leftChild:
-				return self.leftChild.find(data)
-			else:
-				return False
-		else:
-			if self.rightChild:
-				return self.rightChild.find(data)
-			else:
-				return False
+        # no root exist. This is a first element (root)
+        if not self:
+            return BinaryTree( m_data )
 
-	def preorder(self):
-		if self:
-			print (str(self.value))
-			if self.leftChild:
-				self.leftChild.preorder()
-			if self.rightChild:
-				self.rightChild.preorder()
+        # we have at least a root already in the tree
+        else:
 
-	def postorder(self):
-		if self:
-			if self.leftChild:
-				self.leftChild.postorder()
-			if self.rightChild:
-				self.rightChild.postorder()
-			print (str(self.value))
+            # go right
+            if m_data > self.data:
 
-	def inorder(self):
-		if self:
-			if self.leftChild:
-				self.leftChild.inorder()
-			print (str(self.value))
-			if self.rightChild:
-				self.rightChild.inorder()
+                # if right already has leaf(s)
+                if self.right:
+                    return self.right.insert( m_data )
+
+                # else we are inserting the node
+                else:
+                    self.right = BinaryTree( m_data )
+                    return True
+
+            # go left
+            else:
+
+                # if left already exist
+                if self.left:
+                    return self.left.insert( m_data )
+
+                # else we are inserting the node
+                else:
+                    self.left = BinaryTree( m_data )
+                    return True
 
 
-	def heightNode( self ):
-		this_level = [self] # list, with 1st elem as root Node
-		number_of_levels = 0
-		
-		while this_level: # is always replaced with next level
-			number_of_levels += 1
-			next_level = [] # list to store next level down (if exist)
-			for n in this_level: # iterate over current level
-				# print n.cargo
-				if n.left:  next_level.append( n.left )
-				if n.right: next_level.append( n.right )
-			# print # print empty line between hights
-			this_level = next_level
-		print number_of_levels-1
+    def in_order( self ):
+        if self:
+            if self.left:
+                self.left.in_order()
+
+            print str(self.data)
+
+            if self.right:
+                self.right.in_order()
+
+    def levels( self ):
+        current_level = [self]
+        num_of_levels = 0
+
+        while current_level:
+            next_level = list() # storing left + right resulst
+            num_of_levels += 1
+
+            # iterating over what was found
+            for c in current_level:
+                print c.data, #in python 2.7 the comma is to show that the string will be printed on the same line
+
+                if c.left:  next_level.append( c.left )
+                if c.right: next_level.append( c.right )
+
+            print
+            current_level = next_level
+
+        print 'Number of levels: {0}'.format(num_of_levels)
 
 
-''' TREE class '''
-class Tree:
-	def __init__(self):
-		self.root = None
+    def find( self, m_data ):
 
-	def insert(self, data):
-		if self.root:
-			return self.root.insert(data)
-		else:
-			self.root = Node(data)
-			return True
+        # if tree is empty
+        if not self:
+            return False
 
-	def find(self, data):
-		if self.root:
-			return self.root.find(data)
-		else:
-			return False
-	
-	def remove(self, data):
-		# empty tree
-		if self.root is None:
-			return False
-			
-		# data is in root node	
-		elif self.root.value == data:
-			if self.root.leftChild is None and self.root.rightChild is None:
-				self.root = None
-			elif self.root.leftChild and self.root.rightChild is None:
-				self.root = self.root.leftChild
-			elif self.root.leftChild is None and self.root.rightChild:
-				self.root = self.root.rightChild
-			elif self.root.leftChild and self.root.rightChild:
-				delNodeParent = self.root
-				delNode = self.root.rightChild
-				while delNode.leftChild:
-					delNodeParent = delNode
-					delNode = delNode.leftChild
-					
-				self.root.value = delNode.value
-				if delNode.rightChild:
-					if delNodeParent.value > delNode.value:
-						delNodeParent.leftChild = delNode.rightChild
-					elif delNodeParent.value < delNode.value:
-						delNodeParent.rightChild = delNode.rightChild
-				else:
-					if delNode.value < delNodeParent.value:
-						delNodeParent.leftChild = None
-					else:
-						delNodeParent.rightChild = None
-						
-			return True
-		
-		parent = None
-		node = self.root
-		
-		# find node to remove
-		while node and node.value != data:
-			parent = node
-			if data < node.value:
-				node = node.leftChild
-			elif data > node.value:
-				node = node.rightChild
-		
-		# case 1: data not found
-		if node is None or node.value != data:
-			return False
-			
-		# case 2: remove-node has no children
-		elif node.leftChild is None and node.rightChild is None:
-			if data < parent.value:
-				parent.leftChild = None
-			else:
-				parent.rightChild = None
-			return True
-			
-		# case 3: remove-node has left child only
-		elif node.leftChild and node.rightChild is None:
-			if data < parent.value:
-				parent.leftChild = node.leftChild
-			else:
-				parent.rightChild = node.leftChild
-			return True
-			
-		# case 4: remove-node has right child only
-		elif node.leftChild is None and node.rightChild:
-			if data < parent.value:
-				parent.leftChild = node.rightChild
-			else:
-				parent.rightChild = node.rightChild
-			return True
-			
-		# case 5: remove-node has left and right children
-		else:
-			delNodeParent = node
-			delNode = node.rightChild
-			while delNode.leftChild:
-				delNodeParent = delNode
-				delNode = delNode.leftChild
-				
-			node.value = delNode.value
-			if delNode.rightChild:
-				if delNodeParent.value > delNode.value:
-					delNodeParent.leftChild = delNode.rightChild
-				elif delNodeParent.value < delNode.value:
-					delNodeParent.rightChild = delNode.rightChild
-			else:
-				if delNode.value < delNodeParent.value:
-					delNodeParent.leftChild = None
-				else:
-					delNodeParent.rightChild = None
+        # go right
+        if m_data > self.data:
 
-	def preorder(self):
-		if self.root is not None:
-			print("PreOrder")
-			self.root.preorder()
-        
-	def postorder(self):
-		if self.root is not None:
-			print("PostOrder")
-			self.root.postorder()
-			
-	def inorder(self):
-		if self.root is not None:
-			print("InOrder")
-			self.root.inorder()
+            # if right child exist
+            if self.right:
+
+                # if we found our data
+                if self.right.data == m_data:
+                    return True
+
+                # else recursively look for data
+                else:
+                    return self.right.find( m_data )
+
+            # we aint found shit
+            else:
+                return False
+
+        # else go left
+        else:
+
+            # if left child exist
+            if self.left:
+
+                # if we found our data
+                if self.left.data == m_data:
+                    return True
+
+                # else recursively look for data
+                else:
+                    return self.left.find( m_data )
+
+            # we aint found shit
+            else:
+                return False
+
+''' test '''
+b = BinaryTree()
+b.insert(5)
+b.insert(34)
+b.insert(23)
+b.insert(1)
+b.insert(3)
+b.insert(4)
+
+# b.in_order()
+
+# print (b.find(7))
+# print (b.find(3))
+
+b.levels()
 
 
-	def height( self ):
-		if not self.root:
-			return 0
-		else:
-			return self.root.heightNode()
 
-bst = Tree()
-#print(bst.insert(11))
-bst.insert(5)
-bst.insert(34)
-bst.insert(23)
-bst.insert(1)
-bst.insert(3)
-bst.insert(4)
-
-bst.height()
-
-#print( bst.find(4) )
-#print( bst.find(1) )
-
-# bst.preorder()
-# bst.postorder()
-#bst.inorder()
-# #print(bst.remove(10))
-# bst.preorder()

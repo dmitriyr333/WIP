@@ -15,6 +15,7 @@ def rec_coin_dynam(target,coins, known_results = None):
 
     # Base Case
     if target in coins:
+        print 'insde Base Case, target: {0}'.format(target)
         known_results[target] = 1
         return 1
 
@@ -29,6 +30,8 @@ def rec_coin_dynam(target,coins, known_results = None):
             # Recursive call, note how we include the known results!
             num_coins = 1 + rec_coin_dynam(target-i,coins,known_results)
 
+            print 'min_coins: {0}; num_coins: {1}; target: {2}'.format(min_coins,num_coins,target)
+
             # Reset Minimum if we have a new minimum
             if  min_coins > num_coins:
                 min_coins = num_coins
@@ -36,13 +39,13 @@ def rec_coin_dynam(target,coins, known_results = None):
                 # Reset the known result
                 known_results[target] = min_coins
 
-    # print known_results
+    print known_results
     return min_coins
 
 
 def main():
-  target = 7
-  coins = [1,5]
+  target = 63
+  coins = [1,5,10,25]
   # known_results = [0]*(target+1)
 
   print rec_coin_dynam(target,coins)
