@@ -13,7 +13,7 @@ def permute(s):
             for perm in permute(s[:i] + s[i+1:]):
 
                 # Add it to output
-                out += [let + perm]
+                out.append( let + perm )
                 # OR
                 # out.append(let + perm)
 
@@ -21,6 +21,6 @@ def permute(s):
 
 
 ''' test '''
-permute('abc')
+print permute('abc')
 
 # ['abc', 'acb', 'bac', 'bca', 'cab', 'cba']
