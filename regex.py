@@ -14,7 +14,7 @@ if matchObj:
    print "matchObj.group(2) : ", matchObj.group(2)
 else:
    print "No match!!"
-   
+
 '''
   matchObj.group() :  Cats are smarter than dogs
   matchObj.group(1) :  Cats
@@ -37,15 +37,15 @@ if searchObj:
    print "searchObj.group(2) : ", searchObj.group(2)
 else:
    print "Nothing found!!"
-   
+
 '''
   matchObj.group() :  Cats are smarter than dogs
   matchObj.group(1) :  Cats
   matchObj.group(2) :  smarter
 '''
-   
-   
-   
+
+
+
 ''' searching vs matching '''
 #!/usr/bin/python
 import re
@@ -63,7 +63,7 @@ if searchObj:
    print "search --> searchObj.group() : ", searchObj.group()
 else:
    print "Nothing found!!"
-   
+
 '''
   No match!!
   search --> matchObj.group() :  dogs
@@ -71,7 +71,7 @@ else:
 
 
 
-''' search and replace ''''
+''' search and replace '''
 #!/usr/bin/python
 import re
 
@@ -82,7 +82,7 @@ num = re.sub(r'#.*$', "", phone)
 print "Phone Num : ", num
 
 # Remove anything other than digits
-num = re.sub(r'\D', "", phone)    
+num = re.sub(r'\D', "", phone)
 print "Phone Num : ", num
 
 '''

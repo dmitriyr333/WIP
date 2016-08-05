@@ -1,5 +1,5 @@
 '''
-  Write an efficient function that takes stock_prices_yesterday and returns the best profit 
+  Write an efficient function that takes stock_prices_yesterday and returns the best profit
   I could have made from 1 purchase and 1 sale of 1 Apple stock yesterday.
 '''
 
@@ -14,7 +14,7 @@ def get_max_profit(stock_prices_yesterday):
   # we'll greedily update min_price and max_profit, so we initialize
   # them to the first price and the first possible profit
   min_price = stock_prices_yesterday[0]
-  max_profit = stock_prices_yesterday[1] - stock_prices_yesterday[0]
+  max_profit = stock_prices_yesterday[1] - -y[0]
 
   for index, current_price in enumerate(stock_prices_yesterday):
 
@@ -41,7 +41,7 @@ def get_max_profit(stock_prices_yesterday):
   return max_profit
 
 
-''' 
+'''
   test
 '''
 stock_prices_yesterday = [10, 7, 5, 8, 11, 9]
