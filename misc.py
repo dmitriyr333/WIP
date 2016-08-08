@@ -90,8 +90,6 @@ def intersect(a, b):
     """ return intesection of ALL elements in the list """
     return set.intersection( *full_list )
 
-
-
 def union(a, b):
     """ return the union of two lists """
     return list(set(a) | set(b))
@@ -117,3 +115,14 @@ print any(c.isalpha() for c in str) # True
 print any(c.isdigit() for c in str) # True
 print any(c.islower() for c in str) # True
 print any(c.isupper() for c in str) # True
+
+
+''' read in csv file '''
+import csv
+
+with open( __filename__, 'rb') as csvfile:
+    data_reader = csv.reader( csvfile ):
+        for row in data_reader:
+            # do something
+        else:
+            # end of file
