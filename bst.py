@@ -1,131 +1,119 @@
-class BinaryTree( object ):
-    def __init__ (self, data = None, left = None, right = None):
-        self.data = data
-        self.left = left
+class Node( object ):
+    def __init__( self, cargo = None, left = None, right = None ):
+        self.value = cargo
+        self.left  = left
         self.right = right
 
-    def insert( self, m_data ):
-
-        # no root exist. This is a first element (root)
-        if not self:
-            return BinaryTree( m_data )
-
-        # we have at least a root already in the tree
+    def insert_node( self, value ):
+        # check if value already exist; exit with False if it does;
+        # no dups allowed
+        if self.value == value:
+            return False
         else:
-
             # go right
-            if m_data > self.data:
-
-                # if right already has leaf(s)
+            if value > self.value:
+                # if node has right child
                 if self.right:
-                    return self.right.insert( m_data )
-
-                # else we are inserting the node
+                    return self.right.insert_node( value )
+                # no right child. Create one
                 else:
-                    self.right = BinaryTree( m_data )
+                    self.right = Node( value )
                     return True
-
             # go left
             else:
-
-                # if left already exist
                 if self.left:
-                    return self.left.insert( m_data )
-
-                # else we are inserting the node
+                    return self.left.insert_node( value )
                 else:
-                    self.left = BinaryTree( m_data )
+                    self.left = Node( value )
                     return True
+
+    def in_order_node( self ):
+        if self.left:
+            self.left.in_order_node()
+        print str( self.value ),
+        if self.right:
+            self.right.in_order_node()
+
+    def levels_node( self ):
+        level = [ self ]
+
+        while level:
+            current_level = []
+            for branch in level:
+                print branch.value,
+                if branch.left:  current_level.append( branch.left  )
+                if branch.right: current_level.append( branch.right )
+            level = current_level
+            print
+
+
+
+
+
+''' BST class '''
+class BST( object ):
+    def __init__( self, root = None ):
+        self.root = root
+
+    def insert( self, value ):
+
+        # first node in our tree
+        if not self.root:
+            self.root = Node( value )
+            return True
+        # root already exist
+        else:
+            return self.root.insert_node( value )
 
 
     def in_order( self ):
-        if self:
-            if self.left:
-                self.left.in_order()
-
-            print str(self.data)
-
-            if self.right:
-                self.right.in_order()
+        if not self.root:
+            return False
+        else:
+            self.root.in_order_node()
 
     def levels( self ):
-        current_level = [self]
-        num_of_levels = 0
-
-        while current_level:
-            next_level = list() # storing left + right resulst
-            num_of_levels += 1
-
-            # iterating over what was found
-            for c in current_level:
-                print c.data, #in python 2.7 the comma is to show that the string will be printed on the same line
-
-                if c.left:  next_level.append( c.left )
-                if c.right: next_level.append( c.right )
-
-            print
-            current_level = next_level
-
-        print 'Number of levels: {0}'.format(num_of_levels)
-
-
-    def find( self, m_data ):
-
-        # if tree is empty
-        if not self:
+        if not self.root:
             return False
-
-        # go right
-        if m_data > self.data:
-
-            # if right child exist
-            if self.right:
-
-                # if we found our data
-                if self.right.data == m_data:
-                    return True
-
-                # else recursively look for data
-                else:
-                    return self.right.find( m_data )
-
-            # we aint found shit
-            else:
-                return False
-
-        # else go left
         else:
+            self.root.levels_node()
 
-            # if left child exist
-            if self.left:
 
-                # if we found our data
-                if self.left.data == m_data:
-                    return True
 
-                # else recursively look for data
-                else:
-                    return self.left.find( m_data )
+def is_valid_BST( root, mini = None, maxi = None ):
+    if not root:
+        return True
+    if mini and mini >= root.value:
+        return False
+    elif maxi and maxi <= root.value:
+        return False
+    else:
+        return( is_valid_BST(root.left, mini, root.value)
+               and is_valid_BST(root.right, root.value, maxi))
 
-            # we aint found shit
-            else:
-                return False
+
+
 
 ''' test '''
-b = BinaryTree()
-b.insert(5)
-b.insert(34)
-b.insert(23)
-b.insert(1)
-b.insert(3)
-b.insert(4)
+if __name__ == '__main__':
+    # print 'here'
+    b = BST()
+    b.insert(11)
+    b.insert(6)
+    b.insert(8)
+    b.insert(19)
+    b.insert(4)
+    b.insert(10)
+    b.insert(5)
+    b.insert(17)
+    b.insert(43)
+    b.insert(49)
+    b.insert(31)
 
-# b.in_order()
+    # 11, 6, 8, 19, 4, 10, 5, 17, 43, 49, 3
 
-# print (b.find(7))
-# print (b.find(3))
+    # b.print_root()
 
-b.levels()
-
-
-
+    # b.in_order()
+    # b.levels()
+    print is_valid_BST(b.root)
