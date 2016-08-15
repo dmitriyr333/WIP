@@ -14,7 +14,7 @@ def get_max_profit(stock_prices_yesterday):
   # we'll greedily update min_price and max_profit, so we initialize
   # them to the first price and the first possible profit
   min_price = stock_prices_yesterday[0]
-  max_profit = stock_prices_yesterday[1] - -y[0]
+  max_profit = stock_prices_yesterday[1] - min_price
 
   for index, current_price in enumerate(stock_prices_yesterday):
 
@@ -45,3 +45,4 @@ def get_max_profit(stock_prices_yesterday):
   test
 '''
 stock_prices_yesterday = [10, 7, 5, 8, 11, 9]
+print get_max_profit(stock_prices_yesterday)

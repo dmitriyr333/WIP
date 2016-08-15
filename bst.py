@@ -4,6 +4,7 @@ class Node( object ):
         self.left  = left
         self.right = right
 
+
     def insert_node( self, value ):
         # check if value already exist; exit with False if it does;
         # no dups allowed
@@ -27,12 +28,22 @@ class Node( object ):
                     self.left = Node( value )
                     return True
 
+
     def in_order_node( self ):
         if self.left:
             self.left.in_order_node()
         print str( self.value ),
         if self.right:
             self.right.in_order_node()
+
+
+    def post_order_node( self ):
+        if self.left:
+            self.left.in_order_node()
+        if self.right:
+            self.right.in_order_node()
+        print str( self.value ),
+
 
     def levels_node( self ):
         level = [ self ]
@@ -55,8 +66,8 @@ class BST( object ):
     def __init__( self, root = None ):
         self.root = root
 
-    def insert( self, value ):
 
+    def insert( self, value ):
         # first node in our tree
         if not self.root:
             self.root = Node( value )
@@ -72,6 +83,14 @@ class BST( object ):
         else:
             self.root.in_order_node()
 
+
+    def post_order( self ):
+        if not self.root:
+            return False
+        else:
+            self.root.post_order_node()
+
+
     def levels( self ):
         if not self.root:
             return False
@@ -79,17 +98,46 @@ class BST( object ):
             self.root.levels_node()
 
 
-
-def is_valid_BST( root, mini = None, maxi = None ):
-    if not root:
+# checks if binary search tree is valid/correct
+def is_valid_BST( branch, mini_root_value = None, maxi_root_value = None ):
+    if not branch:
         return True
-    if mini and mini >= root.value:
+
+    # FALSE: left child value is greater then branch
+    if mini_root_value and mini_root_value >= branch.value:
         return False
-    elif maxi and maxi <= root.value:
+
+    # FALSE: right child value is less then branch
+    elif maxi_root_value and maxi_root_value <= branch.value:
         return False
+
+    # recursion
     else:
-        return( is_valid_BST(root.left, mini, root.value)
-               and is_valid_BST(root.right, root.value, maxi))
+        return( is_valid_BST( branch.left, mini_root_value, branch.value )
+               and is_valid_BST( branch.right, branch.value, maxi_root_value ) )
+
+
+# trim BST between given min and max values
+def trim_bst( root, min_val, max_val ):
+    # if empty
+    if not root:
+        return
+
+    # post-order traverse
+    root.left  = trim_bst( root.left,  min_val, max_val )
+    root.right = trim_bst( root.right, min_val, max_val )
+
+    # all is good
+    if min_val <= root.value <= max_val:
+        return root
+
+    # if right node is greater than max_val
+    if root.value > max_val:
+        return root.left
+
+    # if left node is less then min_val
+    if root.value < min_val:
+        return root.right
 
 
 
@@ -112,8 +160,27 @@ if __name__ == '__main__':
 
     # 11, 6, 8, 19, 4, 10, 5, 17, 43, 49, 3
 
+    # creating incorrect BST
+    a1 = Node(1)
+    a2 = Node(2)
+    a3 = Node(3)
+
+    a2.left = a3
+    a2.right = a1
+
+
     # b.print_root()
 
     # b.in_order()
+    # print
+    # b.post_order()
+    # print
     # b.levels()
-    print is_valid_BST(b.root)
+    # print
+    # print is_valid_BST(b.root)
+    # print
+    # print is_valid_BST(a2)
+
+    trim_bst( b.root, 10, 31)
+    b.in_order()
+
