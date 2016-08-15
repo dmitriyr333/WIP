@@ -16,7 +16,7 @@ def rec_coin_dynam(target,coins, known_results = None):
     # Base Case
     if target in coins:
         print 'insde Base Case, target: {0}\n'.format(target)
-        known_results[target] = 1
+        # known_results[target] = 1
         return 1
 
     # Return a known result if it happens to be greater than 1
@@ -48,8 +48,8 @@ def rec_coin_dynam(target,coins, known_results = None):
 
 
 def main():
-  target = 5
-  coins = [1,2]
+  target = 31
+  coins = [1,10,25]
   # known_results = [0]*(target+1)
 
   print rec_coin_dynam(target,coins)
