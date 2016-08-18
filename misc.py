@@ -14,11 +14,11 @@ n, m = map(int,raw_input().split())
 
 
 '''
-  Enumerate
+  Enumerate ---> don't forget second argument'
 '''
 lst = ['a', 'b', 'c']
 
-for index, value in enumerate(lst):
+for index, value in enumerate(lst,0):
 	print str(index) + value
 
 '''
@@ -27,10 +27,13 @@ for index, value in enumerate(lst):
 for numb in xrange(10,0,-1):
 	print numb
 
+
+
+
 '''
 	Inheritance
 '''
-class Character:
+class Character( object ):
 	def __init__(self, hair = None):
 		self.hair = hair
 
@@ -39,11 +42,11 @@ class Character:
 
 class Cook( Character ):
 	def __init__( self, hair = None, hat = None):
-		Character.__init__(self, hair)
+		super( self.__class__, self).__init__( hair)
 		self.hat = hat
 
 	def __str__( self ):
-		return Character.__str__(self) + " And {0} hat.".format(self.hat)
+		return Character() + " And {0} hat.".format(self.hat)
 
 
 mike = Cook('brown', 'pointy')
@@ -74,21 +77,15 @@ See this article for a good description of what a new style class is:
  d = defaultdict(<type>)
 
 
-""" NOTES:
-      - requires Python 2.4 or greater
-      - elements of the lists must be hashable
-      - order of the original lists is not preserved
-"""
-def unique(a):
-    """ return the list with duplicate elements removed """
-    return list(set(a))
+''' removes duplicates i.e. [4,4] '''
+print list( set( [1,2,3,4,4,5] ) )
 
-def intersect(a, b):
-    """ return the intersection of two lists """
-    return list(set(a) & set(b))
 
-    """ return intesection of ALL elements in the list """
-    return set.intersection( *full_list )
+""" return the intersection (of elements present) of two lists """
+print list( set( [1,2,3,4,4,5] ) & set( [5,6] ) )
+
+""" return intesection of ALL elements in the list """
+return set.intersection( *full_list )
 
 def union(a, b):
     """ return the union of two lists """
@@ -162,8 +159,7 @@ for i in this_iterator :
     The generator is considered empty once the function runs but does not hit yield anymore. It can be because the loop had come to an end, or because you do not satisfy an "if/else" anymore.
 '''
 def createGenerator():
-    mylist = range(3)
-    for i in mylist:
+    for i in range(3):
         yield i*i
 
 mygenerator = createGenerator() # create a generator
@@ -174,5 +170,16 @@ for i in mygenerator:
 #0
 #2
 #4
+
+
+''' Accessing an attribute using a variable '''
+# what we want to accomplish
+l = ['a','b','c']
+l.append('d')
+
+# using variable 'append'
+append_variable = 'append'
+getattr(l,append_variable)
+# ['a','b','c','d']
 
 
