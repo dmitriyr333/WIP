@@ -183,3 +183,11 @@ getattr(l,append_variable)
 # ['a','b','c','d']
 
 
+''' strings, print in the middle
+str.center(width[, fillchar])
+    Parameters
+width -- This is the total width of the string.
+fillchar -- This is the filler character.
+'''
+print 'WELCOME'.center(40, '-')
+# >>> ------WELCOM-------
