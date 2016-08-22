@@ -189,3 +189,14 @@ fillchar -- This is the filler character.
 '''
 print 'WELCOME'.center(40, '-')
 # >>> ------WELCOM-------
+
+
+''' lambda / filter / map'''
+test_lambda = (lambda x,y: x*y)
+print test_lambda(3,4)
+# >>> 12
+lst = [1,2,3]
+print map(lambda x: x**2, lst)
+# >>> [1, 4, 9]
+print filter (lambda x: x%2 == 0, lst)
+# >>> [2]
