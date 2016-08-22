@@ -173,14 +173,12 @@ for i in mygenerator:
 
 
 ''' Accessing an attribute using a variable '''
-# what we want to accomplish
 l = ['a','b','c']
-l.append('d')
-
 # using variable 'append'
 append_variable = 'append'
-getattr(l,append_variable)
-# ['a','b','c','d']
+getattr(l,append_variable)('d')
+# it is the same as >>> #l.append('d')
+# >>> ['a','b','c','d']
 
 
 ''' strings, print in the middle
