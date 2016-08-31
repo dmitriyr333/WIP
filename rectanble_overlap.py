@@ -9,7 +9,7 @@ def calculate_overlap( coor1, dim1, coor2, dim2 ):
 
     # they will overlap if __second__ rectangle's line starts before \
     # __first__ rectangle ends
-    if furthest_start >= closest_end:
+    if furthest_start > closest_end:
         return (None, None)
 
     # if they overlap, calculate coordinates
@@ -30,8 +30,8 @@ def rectangle( r1, r2 ):
         return {'x':x_over, 'y':y_over, 'w':w_over, 'h':h_over }
 
 if __name__ == '__main__':
-    rec1 = {'x':2, 'y':4, 'w':5, 'h':12}
+    rec1 = {'x':1, 'y':1, 'w':2, 'h':3}
     # rec2 = {'x':6, 'y':5, 'w':6, 'h':3}
-    rec2 = {'x':3, 'y':5, 'w':1, 'h':2}
+    rec2 = {'x':3, 'y':1, 'w':1, 'h':2}
 
     print rectangle( rec1, rec2 )
