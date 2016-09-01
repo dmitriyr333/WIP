@@ -200,3 +200,73 @@ print map(lambda x: x**2, lst)
 # >>> [1, 4, 9]
 print filter (lambda x: x%2 == 0, lst)
 # >>> [2]
+
+
+
+
+
+
+''' decorators '''
+# Function decorators enable the addition of new functionality 
+# to a function without altering the function’s original functionality.
+# or another explanation
+# “wrappers” that let you execute code before and 
+# after the function they decorate without modifying the function itself.
+
+# example
+import datetime
+
+# decorator expects another function as argument
+def logger(func_to_decorate):
+
+    # A wrapper function is defined on the fly
+    def func_wrapper():
+
+        # add any pre original function execution functionality 
+        print("Calling function: {} at {}".format(func_to_decorate.__name__, datetime.datetime.now()))
+
+        # execute original function
+        func_to_decorate()
+
+        # add any post original function execution functionality
+        print("Finished calling : {}".format(func_to_decorate.__name__))
+
+    # return the wrapper function defined on the fly. Body of the 
+    # wrapper function has not been executed yet but a closure 
+    # over the func_to_decorate has been created.
+    return func_wrapper
+
+def print_full_name():
+    print("My name is John Doe")
+
+>>>decorated_func = logger(print_full_name)
+>>>decorated_func
+# the returned value, decorated_func, is a reference to a func_wrapper
+<function func_wrapper at 0x101ed2578>
+>>>decorated_func()
+# decorated_func call output
+Calling function: print_full_name at 2015-01-24 13:48:05.261413
+# the original functionality is preserved
+My name is John Doe
+Finished calling : print_full_name
+
+
+
+
+''' closures '''
+# Closures can be used for maintaining states
+def make_log(level):
+    def _(message):
+        print("{}: {}".format(level, message))
+    return _
+
+log_info = make_log("info")
+log_warning = make_log("warning")
+log_error = make_log("error")
+
+
+''' finding index of array '''
+>>> li
+['a', 'b', 'new', 'mpilgrim', 'z', 'example', 'new', 'two', 'elements']
+>>> li.index("example")
+5
