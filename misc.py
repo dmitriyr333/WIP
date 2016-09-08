@@ -265,8 +265,52 @@ log_warning = make_log("warning")
 log_error = make_log("error")
 
 
-''' finding index of array '''
+
+
+''' lists '''
+# finding index of array
 >>> li
 ['a', 'b', 'new', 'mpilgrim', 'z', 'example', 'new', 'two', 'elements']
 >>> li.index("example")
 5
+# inserting element
+>>> li.insert(2,True)
+>>> li
+['a', 'b', True, 'new', 'mpilgrim', 'z', 'example', 'new', 'two', 'elements']
+
+# delete element
+>>> del li[1]
+>>> li
+['a', True, 'new', 'mpilgrim', 'z', 'example', 'new', 'two', 'elements']
+>>> li.remove('new')
+>>> li
+['a', True, 'mpilgrim', 'z', 'example', 'new', 'two', 'elements']
+
+# sort
+>>> arr.sort()  # <--- permanently sort arr
+>>> sorted(arr) # <--- original arr remains the same, only displays temp sorted arr
+
+# copy lists ( use [:] )
+>>> li_new = li[:]
+# this will NOT work: li_new = li <--- because it will only set a name to existing list
+
+
+
+
+
+
+
+
+
+''' printing floats '''
+print( '{0:0.1f}'.format(mean) ) # will print 8.3
+
+''' finding mode of an array of numbers '''
+sorted( arr )
+counted_arr = [ arr.count(x) for x in arr ] # array of counted numbers
+arr[ counted_arr.index( max( counted_arr ) ) ]
+
+
+# weak typing and strong typing
+# unit tests 
+# stack and heap memory
