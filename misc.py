@@ -261,6 +261,8 @@ def make_log(level):
     return _
 
 log_info = make_log("info")
+log_info('just some info message')
+# >>> info: just some info message
 log_warning = make_log("warning")
 log_error = make_log("error")
 
