@@ -24,4 +24,4 @@ class MyClass( object ):
 ''' lets test it out '''
 b = MyClass([1,2,3,5,4])
 b.buubleSort()
-print b
+print( b

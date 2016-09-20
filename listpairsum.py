@@ -6,7 +6,7 @@ def foo( arr, k):
     for element in range(length):
         target_minus = max(k,arr[element]) - min(k,arr[element])
 
-        #print target
+        #print( target
         if target_minus not in seen:
             seen.add( arr[element] )
         else:
@@ -26,6 +26,6 @@ if __name__ == '__main__':
     arr2 = [9,1,2,8,3,7,4,6,5,5,13,14,11,13,-1]
     k   = 2
 
-    # print foo( arr, k )
+    # print( foo( arr, k )
 
-    print foo( arr2, 10)
+    print( foo( arr2, 10)

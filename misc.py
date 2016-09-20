@@ -19,13 +19,13 @@ n, m = map(int,raw_input().split())
 lst = ['a', 'b', 'c']
 
 for index, value in enumerate(lst,0):
-	print str(index) + value
+	print( str(index) + value
 
 '''
 	Reverse range iteration loop
 '''
 for numb in xrange(10,0,-1):
-	print numb
+	print( numb
 
 
 
@@ -50,7 +50,7 @@ class Cook( Character ):
 
 
 mike = Cook('brown', 'pointy')
-print mike
+print( mike
 
 
 
@@ -78,11 +78,11 @@ See this article for a good description of what a new style class is:
 
 
 ''' removes duplicates i.e. [4,4] '''
-print list( set( [1,2,3,4,4,5] ) )
+print( list( set( [1,2,3,4,4,5] ) )
 
 
 """ return the intersection (of elements present) of two lists """
-print list( set( [1,2,3,4,4,5] ) & set( [5,6] ) )
+print( list( set( [1,2,3,4,4,5] ) & set( [5,6] ) )
 
 """ return intesection of ALL elements in the list """
 return set.intersection( *full_list )
@@ -94,9 +94,9 @@ def union(a, b):
 if __name__ == "__main__":
     a = [0,1,2,0,1,2,3,4,5,6,7,8,9]
     b = [5,6,7,8,9,10,11,12,13,14]
-    print unique(a)
-    print intersect(a, b)
-    print union(a, b)
+    print( unique(a)
+    print( intersect(a, b)
+    print( union(a, b)
 
 
 ''' List comprehension '''
@@ -107,11 +107,11 @@ ListOfThreeMultiples
 
 ''' Neat way to check if string contains special characters '''
 str = 'qA2'
-print any(c.isalnum()  for c in str) # True
-print any(c.isalpha() for c in str) # True
-print any(c.isdigit() for c in str) # True
-print any(c.islower() for c in str) # True
-print any(c.isupper() for c in str) # True
+print( any(c.isalnum()  for c in str) # True
+print( any(c.isalpha() for c in str) # True
+print( any(c.isdigit() for c in str) # True
+print( any(c.islower() for c in str) # True
+print( any(c.isupper() for c in str) # True
 
 
 ''' read in csv file '''
@@ -128,22 +128,22 @@ with open( __filename__, 'rb') as csvfile:
 this_generator = (x*2 for x in range(3)) # generator => can only be used once. Once used, they forget their value. It is not stored in memory!!!
 this_iterator  = [x*2 for x in range(3)] # can be used many times
 
-print this_iterator
-print this_generator
+print( this_iterator
+print( this_generator
 
-print 'running generator first time'
+print( 'running generator first time'
 for i in this_generator :
-    print i
+    print( i
 
-print 'second time, this will not run'
+print( 'second time, this will not run'
 for i in this_generator :
-    print i
+    print( i
 
-print 'running iterator multiple times'
+print( 'running iterator multiple times'
 for i in this_iterator :
-    print i
+    print( i
 for i in this_iterator :
-    print i
+    print( i
 
 
 ''' Yield is a keyword that is used like return, except the function will return a generator.
@@ -181,24 +181,24 @@ getattr(l,append_variable)('d')
 # >>> ['a','b','c','d']
 
 
-''' strings, print in the middle
+''' strings, print( in the middle
 str.center(width[, fillchar])
     Parameters
 width -- This is the total width of the string.
 fillchar -- This is the filler character.
 '''
-print 'WELCOME'.center(40, '-')
+print( 'WELCOME'.center(40, '-')
 # >>> ------WELCOM-------
 
 
 ''' lambda / filter / map'''
 test_lambda = (lambda x,y: x*y)
-print test_lambda(3,4)
+print( test_lambda(3,4)
 # >>> 12
 lst = [1,2,3]
-print map(lambda x: x**2, lst)
+print( map(lambda x: x**2, lst)
 # >>> [1, 4, 9]
-print filter (lambda x: x%2 == 0, lst)
+print( filter (lambda x: x%2 == 0, lst)
 # >>> [2]
 
 
@@ -305,7 +305,7 @@ log_error = make_log("error")
 
 
 ''' printing floats '''
-print( '{0:0.1f}'.format(mean) ) # will print 8.3
+print( '{0:0.1f}'.format(mean) ) # will print( 8.3
 
 ''' finding mode of an array of numbers '''
 sorted( arr )
@@ -316,3 +316,7 @@ arr[ counted_arr.index( max( counted_arr ) ) ]
 # weak typing and strong typing
 # unit tests 
 # stack and heap memory
+# Dynamically typed: no need to pre-declare variables. 
+#   Example: int x = 10 vs. x = 10
+# First class objects: functions and classes can be assigned to
+#   returned and passed to functions 

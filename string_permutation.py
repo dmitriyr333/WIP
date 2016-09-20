@@ -21,6 +21,6 @@ def permute(s):
 
 
 ''' test '''
-print permute('abc')
+print( permute('abc')
 
 # ['abc', 'acb', 'bac', 'bca', 'cab', 'cba']

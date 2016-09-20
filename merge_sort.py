@@ -23,4 +23,4 @@ def merge_sort( arr ):
     
     return out
 
-print merge_sort( [5,4,3,9,0] ) 
+print( merge_sort( [5,4,3,9,0] ) ) 

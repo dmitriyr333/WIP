@@ -24,7 +24,7 @@ def rectangle( r1, r2 ):
     y_over, h_over = calculate_overlap( r1['y'], r1['h'], r2['y'], r2['h'] )
 
     if not x_over and not y_over:
-        print 'No overlap.'
+        print( 'No overlap.'
         return None  
     else:
         return {'x':x_over, 'y':y_over, 'w':w_over, 'h':h_over }
@@ -34,4 +34,4 @@ if __name__ == '__main__':
     # rec2 = {'x':6, 'y':5, 'w':6, 'h':3}
     rec2 = {'x':3, 'y':1, 'w':1, 'h':2}
 
-    print rectangle( rec1, rec2 )
+    print( rectangle( rec1, rec2 )

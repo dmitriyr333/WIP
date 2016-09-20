@@ -23,4 +23,4 @@ def balance_check( s ):
 
 
 '''test'''
-print balance_check('[](){([[[]]])}(')
+print( balance_check('[](){([[[]]])}(')

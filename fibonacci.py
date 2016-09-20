@@ -41,6 +41,6 @@ def fib_iterate(n):
 
 
 ''' test '''
-print fib_simple_recursion(10)
-print fib_dynamic(10)
-print fib_iterate(10)
+print( fib_simple_recursion(10)
+print( fib_dynamic(10)
+print( fib_iterate(10)

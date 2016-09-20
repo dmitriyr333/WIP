@@ -32,7 +32,7 @@ class Node( object ):
     def in_order_node( self ):
         if self.left:
             self.left.in_order_node()
-        print str( self.value ),
+        print( str( self.value ),
         if self.right:
             self.right.in_order_node()
 
@@ -42,7 +42,7 @@ class Node( object ):
             self.left.in_order_node()
         if self.right:
             self.right.in_order_node()
-        print str( self.value ),
+        print( str( self.value ),
 
 
     def levels_node( self ):
@@ -51,7 +51,7 @@ class Node( object ):
         while level:
             current_level = []
             for branch in level:
-                print branch.value,
+                print( branch.value,
                 if branch.left:  current_level.append( branch.left  )
                 if branch.right: current_level.append( branch.right )
             level = current_level
@@ -144,7 +144,7 @@ def trim_bst( root, min_val, max_val ):
 
 ''' test '''
 if __name__ == '__main__':
-    # print 'here'
+    # print( 'here'
     b = BST()
     b.insert(11)
     b.insert(6)
@@ -177,9 +177,9 @@ if __name__ == '__main__':
     # print
     # b.levels()
     # print
-    # print is_valid_BST(b.root)
+    # print( is_valid_BST(b.root)
     # print
-    # print is_valid_BST(a2)
+    # print( is_valid_BST(a2)
 
     trim_bst( b.root, 10, 31)
     b.in_order()

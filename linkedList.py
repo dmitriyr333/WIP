@@ -12,7 +12,7 @@ class LinkedList( object ):
         start = head
 
         while start != None:
-            print start.value
+            print( start.value
             start = start.nextnode
 
         return head

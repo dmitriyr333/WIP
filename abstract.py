@@ -16,10 +16,10 @@ class MyBook(Book):
     def __init__(self, title, author, price):
         super(MyBook, self).__init__(title, author)
         self.price = price
-        #print title
+        #print( title
         
     def display( self ):
-        print "{0}{1}{2}".format(self.title, self.author, self.price)
+        print( "{0}{1}{2}".format(self.title, self.author, self.price)
 
 
 new_novel=MyBook('title','author',12)

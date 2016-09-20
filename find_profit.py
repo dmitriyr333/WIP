@@ -45,4 +45,4 @@ def get_max_profit(stock_prices_yesterday):
   test
 '''
 stock_prices_yesterday = [10, 7, 5, 8, 11, 9]
-print get_max_profit(stock_prices_yesterday)
+print( get_max_profit(stock_prices_yesterday)

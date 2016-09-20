@@ -6,7 +6,7 @@ def compute_median( arr ):
     
     # even
     if len( arr ) % 2 == 0:
-        # print (arr[mid-1], arr[mid])
+        # print( (arr[mid-1], arr[mid])
         return float(arr[mid-1] + arr[mid]) / 2
     # odd
     else:

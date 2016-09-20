@@ -11,4 +11,4 @@ def calc_root( num ):
             return i - 1
 # test
 for j in range( 15, 18 ):
-    print calc_root( j )
+    print( calc_root( j )

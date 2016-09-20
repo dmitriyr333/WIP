@@ -42,7 +42,7 @@ def sorted_binary_search_recursive( arr, element ):
 
 
 ''' test '''
-# print sorted_binary_search([1,2,3,4,5],8)
-print sorted_binary_search_recursive([1,2,3,4,5],9)
+# print( sorted_binary_search([1,2,3,4,5],8)
+print( sorted_binary_search_recursive([1,2,3,4,5],9)
 
 

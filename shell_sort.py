@@ -12,4 +12,4 @@ def shellSort(array):
         gap //= 2
     return array
 
-print shellSort([5,4,3,8,0])
+print( shellSort([5,4,3,8,0])

@@ -8,4 +8,4 @@ def insertion_sort( arr ):
     return arr
 
 if __name__ == '__main__':
-    print insertion_sort([4, 5, 3, 2, 8])
+    print( insertion_sort([4, 5, 3, 2, 8])

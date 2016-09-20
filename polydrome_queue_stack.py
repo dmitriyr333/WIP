@@ -51,7 +51,7 @@ if __name__ == '__main__':
       if obj.popCharacter()!=obj.dequeueCharacter():
           isPalindrome=False
           break
-  #finally print whether string s is palindrome or not.
+  #finally print( whether string s is palindrome or not.
   if isPalindrome:
       sys.stdout.write ("The word, "+s+", is a palindrome.")
   else:

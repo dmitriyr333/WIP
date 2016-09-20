@@ -52,7 +52,7 @@ class TestCompress(object):
         assert_equal(sol('AABBCC'), 'A2B2C2')
         assert_equal(sol('AAABCCDDDDD'), 'A3B1C2D5')
         assert_equal(sol('A'),'A1')
-        print 'ALL TEST CASES PASSED'
+        print( 'ALL TEST CASES PASSED'
 
 # Run Tests
 t = TestCompress()
