@@ -104,3 +104,19 @@ for char in string:
       print( 'match: {}, match.group(): {}'.format( match, match.group() ) )
       letter = match.group()
       column = match.start()+1
+
+
+
+''' replace all words with first capital letter ''' 
+import re
+s = 'the brown fox'
+
+def repl_func(m):
+    """process regular expression match groups for word upper-casing problem"""
+    return m.group(1) + m.group(2).upper()
+
+s = re.sub("(^|\s)(\S)", repl_func, s)
+
+
+>>> re.sub("(^|\s)(\S)", repl_func, s)
+"They're Bill's Friends From The UK"

@@ -1,6 +1,6 @@
 
 '''
-  read intpu from stdin until there are no more
+  read intput from stdin until there are no more
 '''
 
 import sys
@@ -26,33 +26,6 @@ for index, value in enumerate(lst,0):
 '''
 for numb in xrange(10,0,-1):
 	print( numb
-
-
-
-
-'''
-	Inheritance
-'''
-class Character( object ):
-	def __init__(self, hair = None):
-		self.hair = hair
-
-	def __str__( self ):
-		return "Hair is: {0}.".format(self.hair)
-
-class Cook( Character ):
-	def __init__( self, hair = None, hat = None):
-		super( self.__class__, self).__init__( hair)
-		self.hat = hat
-
-	def __str__( self ):
-		return Character() + " And {0} hat.".format(self.hat)
-
-
-mike = Cook('brown', 'pointy')
-print( mike
-
-
 
 
 '''
@@ -128,35 +101,41 @@ with open( __filename__, 'rb') as csvfile:
 this_generator = (x*2 for x in range(3)) # generator => can only be used once. Once used, they forget their value. It is not stored in memory!!!
 this_iterator  = [x*2 for x in range(3)] # can be used many times
 
-print( this_iterator
-print( this_generator
+print( this_iterator )
+print( this_generator )
 
 print( 'running generator first time'
 for i in this_generator :
-    print( i
+    print( i )
 
 print( 'second time, this will not run'
 for i in this_generator :
-    print( i
+    print( i )
 
 print( 'running iterator multiple times'
 for i in this_iterator :
-    print( i
+    print( i )
 for i in this_iterator :
-    print( i
+    print( i )
 
 
-''' Yield is a keyword that is used like return, except the function will return a generator.
-
-    To master yield, you must understand that when you call the function, the code you have written in the function body does not run. The function only returns the generator object, this is a bit tricky :-)
-
-    Then, your code will be run each time the for uses the generator.
-
-    Now the hard part:
-
-    The first time the for calls the generator object created from your function, it will run the code in your function from the beginning until it hits yield, then it'll return the first value of the loop. Then, each other call will run the loop you have written in the function one more time, and return the next value, until there is no value to return.
-
-    The generator is considered empty once the function runs but does not hit yield anymore. It can be because the loop had come to an end, or because you do not satisfy an "if/else" anymore.
+''' 
+Yield is a keyword that is used like return, 
+    except the function will return a generator.
+To master yield, you must understand that when you call the function, 
+    the code you have written in the function body does not run. 
+    The function only returns the generator object, this is a bit tricky :-)
+Then, your code will be run each time the for uses the generator.
+Now the hard part:
+The first time the for calls the generator object created from your function, 
+    it will run the code in your function from the beginning until 
+    it hits yield, then it'll return the first value of the loop. 
+    Then, each other call will run the loop you have written in the 
+    function one more time, and return the next value, 
+    until there is no value to return.
+The generator is considered empty once the function runs but 
+    does not hit yield anymore. It can be because the loop had come to an end, 
+    or because you do not satisfy an "if/else" anymore.
 '''
 def createGenerator():
     for i in range(3):
@@ -320,3 +299,18 @@ arr[ counted_arr.index( max( counted_arr ) ) ]
 #   Example: int x = 10 vs. x = 10
 # First class objects: functions and classes can be assigned to
 #   returned and passed to functions 
+
+
+
+
+
+
+
+
+# This tool returns successive  length permutations of elements in an iterable.
+# If  is not specified or is None, then  defaults to the length of the iterable,
+#    and all possible full length permutations are generated.
+from itertools import permutations
+
+lst = list('abc')
+print( list(permutations(lst,2)) )
