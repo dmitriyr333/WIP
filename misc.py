@@ -314,3 +314,10 @@ from itertools import permutations
 
 lst = list('abc')
 print( list(permutations(lst,2)) )
+
+
+
+
+
+# generate alphabet
+al = [ chr( ord( 'a' ) + x ) for x in range(26) ] 
