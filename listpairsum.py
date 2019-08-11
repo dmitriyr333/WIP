@@ -3,6 +3,10 @@ def foo( arr, k):
     output = set()
     length = len(arr)
 
+
+
+
+
     for element in range(length):
         target_minus = max(k,arr[element]) - min(k,arr[element])
 

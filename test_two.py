@@ -1,31 +1,26 @@
-''' self is test duece module '''
 
-import math
+def coinz(coins, target):
+    # print('here too')
 
-class Circle:
-    def __init__(self, radius):
-        self.radius = radius
-        self._test = 'abc'
-    
-    def area(self):
-        return math.pi * self.radius ** 2.0
+    MAX = float('inf')
+    dp = [0] + [MAX]*target
 
-    def perimiter(self):
-        return math.pi * self.radius * 2.0
+    for i in range(1, target+1):
+        for coin in coins:
+            if i - coin >= 0:
+                dp[i] = min(dp[i-coin]+1, dp[i])
+    if dp[-1] == float('inf'):
+        return -1
 
-
-class Tire( Circle ):
-    def perimiter(self):
-        return Circle.perimiter(self) * 1.5 # extending methon (not overwriting)
+    return dp[target]
 
 
-# test
-c = Circle(5)
-print( 'Area: {:0.3f}'.format(c.area()) )
-print( 'Perimiter: {:0.3f}'.format(c.perimiter()) )
+def main():
+    # print('{0}'.format("here"))
 
-t = Tire(5)
-print( 'Tire Perimiter: {:0.3f}'.format(t.perimiter()) )
+    coins = [1, 3, 5]
+    target = 11
+    print('answer: {0}'.format(coinz(coins, target)))
 
-print( 'test: {} '.format( c._test ) )
 
+main()
